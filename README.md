@@ -1,11 +1,11 @@
 # Prefab Generator
 
 ## Overview
-Prefab Generator is a Unity Editor tool designed to create optimized, low-resolution versions of prefabs and scenes. It processes assets such as sprites, textures, audio, and scriptable objects to generate performance-friendly prefabs, making it useful for mobile and WebGL platforms.
+Prefab Generator is a Unity Editor tool designed to create optimized, low-resolution versions of prefabs. It processes assets such as sprites, textures, audio, and scriptable objects to generate performance-friendly prefabs, making it useful for mobile and WebGL platforms.
 
 ## Features
 - Generates low-resolution prefabs from existing ones
-- Processes entire scenes to replace high-resolution assets with optimized versions
+- Processes entire prefabs to replace high-resolution assets with optimized versions
 - Supports batch processing for folders
 - Customizable quality settings via `PrefabQualitySettingConfig`
 - Automated asset caching to avoid redundant processing
@@ -33,7 +33,6 @@ Go to `Window > KH-Tools > Prefab Generator` in the Unity Editor.
 ### 2. Select Conversion Type
 Choose one of the following:
 - **Single Prefab:** Process a single prefab to generate a low-resolution version.
-- **Scene:** Process a scene to replace prefabs with their optimized versions.
 - **Folder:** Process all prefabs within a specified folder.
 
 ### 3. Configure Settings
@@ -62,13 +61,8 @@ public class PrefabQualitySettingConfig : ScriptableObject {
    - Iterates through the prefab hierarchy.
    - Optimizes referenced assets using asset processors.
    - Saves optimized prefabs in a specified folder.
-
-2. **SceneProcessor**
-   - Scans the scene for prefabs.
-   - Replaces high-resolution prefabs with optimized versions.
-   - Saves changes as a new scene file.
-
-3. **BaseAssetProcessor**
+   
+2. **BaseAssetProcessor**
    - Handles asset optimization (textures, audio, etc.).
    - Ensures built-in Unity assets are not modified.
    - Stores processed assets to prevent redundant work.
