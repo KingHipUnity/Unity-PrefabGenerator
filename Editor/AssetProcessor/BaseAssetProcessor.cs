@@ -56,7 +56,7 @@ namespace KingHip.PrefabGenerator {
 
       // Set the new target path inside the "LowRes" folder
       if (directory.StartsWith("Assets")) {
-        directory = directory.Remove(0, "Assets".Length + 1);
+        directory = directory.Remove(0, directory.Length == "Assets".Length? "Assets".Length: "Assets".Length + 1);
       }
       string targetPath = Path.Combine("Assets", assetPrefix, directory, $"{assetPrefix}_{fileName}");
       string dirPath = Path.GetDirectoryName(targetPath);
