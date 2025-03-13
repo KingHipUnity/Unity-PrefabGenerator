@@ -1,0 +1,8 @@
+{
+    "name": "com.kinghip.prefab_generator",
+    "displayName": "[KH] Prefab Generator",
+    "version": "1.0.0",
+    "unity": "2019.2",
+    "description": "This tool allows you to generate various versions of assets (e.g., prefabs, sprites, textures, audio files) ",
+    "dependencies": {}
+    }
