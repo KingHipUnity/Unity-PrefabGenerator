@@ -74,7 +74,6 @@ public class PrefabQualitySettingConfig : ScriptableObject {
    - Stores processed assets to prevent redundant work.
 
 ## Requirements
-- Unity 2020.3 or later
 - Editor mode (not runtime compatible)
 
 ## License

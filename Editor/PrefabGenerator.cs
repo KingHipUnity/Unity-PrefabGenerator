@@ -262,7 +262,7 @@ namespace KingHip.PrefabGenerator {
 
     public void ProcessScene(SceneAsset sourceScene, string lowResPrefix) {
       string scenePath = AssetDatabase.GetAssetPath(sourceScene);
-      string targetPath = GetTargetScenePath(scenePath, lowResPrefix);
+      string targetPath = GetTargetPath(sourceScene, lowResPrefix);
 
       // Create and open low-res scene
       var scene = CreateLowResScene(scenePath, targetPath);
@@ -274,11 +274,21 @@ namespace KingHip.PrefabGenerator {
         transformCache.Clear();
       }
     }
+    protected string GetTargetPath(SceneAsset source, string scenePrefix) {
+      string sourcePath = AssetDatabase.GetAssetPath(source);
+      string directory = Path.GetDirectoryName(sourcePath);
+      string fileName = Path.GetFileName(sourcePath);
 
-    private string GetTargetScenePath(string sourcePath, string prefix) {
-      var dir = System.IO.Path.GetDirectoryName(sourcePath);
-      var fileName = System.IO.Path.GetFileName(sourcePath);
-      return $"{dir}/{prefix}{fileName}";
+      // Set the new target path inside the "LowRes" folder
+      if (directory.StartsWith("Assets")) {
+        directory = directory.Remove(0, "Assets".Length + 1);
+      }
+      string targetPath = Path.Combine("Assets", scenePrefix, directory, $"{scenePrefix}_{fileName}");
+      string dirPath = Path.GetDirectoryName(targetPath);
+      if (!Directory.Exists(dirPath)) {
+        Directory.CreateDirectory(dirPath);
+      }
+      return targetPath;
     }
 
     private UnityEngine.SceneManagement.Scene CreateLowResScene(string sourcePath, string targetPath) {
